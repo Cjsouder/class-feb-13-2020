@@ -1,0 +1,35 @@
+---
+title: "class-feb-13-2020"
+author: "Chase Souder"
+date: "2/13/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(reprex)
+library(tidyverse)
+library(ggplot2)
+library(readr)
+library(readxl)
+library(janitor)
+library(gt)
+```
+
+```{r, echo= FALSE}
+x <- read_excel("class_enrollment_summary_by_term_2.13.20.xlsx",
+               skip = 3) %>%
+     clean_names() %>%
+     filter(course_department == "Government") %>%
+     arrange(desc(total)) %>%
+     slice(1:5) %>%
+     select(course_title, course_name, instructor_full_name, total) %>%
+     gt() %>%
+     cols_label(course_title = "Course Title", course_name = "Course Name", instructor_full_name = "Instructor", total = "Enrollment") %>%
+     tab_header(title = "Top Five Government Classes")
+
+x
+
+```
+
+
