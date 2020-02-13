@@ -26,7 +26,8 @@ x <- read_excel("class_enrollment_summary_by_term_2.13.20.xlsx",
      select(course_title, course_name, instructor_full_name, total) %>%
      gt() %>%
      cols_label(course_title = "Course Title", course_name = "Course Name", instructor_full_name = "Instructor", total = "Enrollment") %>%
-     tab_header(title = "Top Five Government Classes")
+     tab_header(title = "Top Five Government Classes") %>%
+     tab_source_note("Taken from https://registrar.fas.harvard.edu/faculty-staff/courses/enrollment")
 
 x
 
